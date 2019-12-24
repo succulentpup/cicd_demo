@@ -123,7 +123,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cicd-demo/dev/1577184035440-2019-12-24T10:40:35.440Z/cicd-demo.zip"
+                "S3Key": "serverless/cicd-demo/dev/1577184673754-2019-12-24T10:51:13.754Z/cicd-demo.zip"
               },
               "FunctionName": "cicd-demo-dev-hello",
               "Handler": "handler.hello",
@@ -194,7 +194,7 @@
               "APINestedStack"
             ]
           },
-          "ApiGatewayDeployment1577184032535": {
+          "ApiGatewayDeployment1577184670132": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -210,58 +210,6 @@
               "APINestedStack"
             ]
           },
-          "PoliciesNestedStack": {
-            "Type": "AWS::CloudFormation::Stack",
-            "Properties": {
-              "Parameters": {
-                "ServerlessDeploymentBucketParameter": {
-                  "Ref": "ServerlessDeploymentBucket"
-                }
-              },
-              "TemplateURL": {
-                "Fn::Join": [
-                  "/",
-                  [
-                    "https://s3.ap-south-1.amazonaws.com",
-                    {
-                      "Ref": "ServerlessDeploymentBucket"
-                    },
-                    "serverless/cicd-demo/dev/1577184035440-2019-12-24T10:40:35.440Z",
-                    "cloudformation-template-Policies-nested-stack.json"
-                  ]
-                ]
-              }
-            },
-            "DependsOn": [
-              "ServerlessDeploymentBucket"
-            ]
-          },
-          "VersionsNestedStack": {
-            "Type": "AWS::CloudFormation::Stack",
-            "Properties": {
-              "Parameters": {
-                "HelloLambdaFunctionParameter": {
-                  "Ref": "HelloLambdaFunction"
-                }
-              },
-              "TemplateURL": {
-                "Fn::Join": [
-                  "/",
-                  [
-                    "https://s3.ap-south-1.amazonaws.com",
-                    {
-                      "Ref": "ServerlessDeploymentBucket"
-                    },
-                    "serverless/cicd-demo/dev/1577184035440-2019-12-24T10:40:35.440Z",
-                    "cloudformation-template-Versions-nested-stack.json"
-                  ]
-                ]
-              }
-            },
-            "DependsOn": [
-              "HelloLambdaFunction"
-            ]
-          },
           "APINestedStack": {
             "Type": "AWS::CloudFormation::Stack",
             "Properties": {
@@ -274,7 +222,7 @@
                     {
                       "Ref": "ServerlessDeploymentBucket"
                     },
-                    "serverless/cicd-demo/dev/1577184035440-2019-12-24T10:40:35.440Z",
+                    "serverless/cicd-demo/dev/1577184673754-2019-12-24T10:51:13.754Z",
                     "cloudformation-template-API-nested-stack.json"
                   ]
                 ]
@@ -306,7 +254,7 @@
                     {
                       "Ref": "ServerlessDeploymentBucket"
                     },
-                    "serverless/cicd-demo/dev/1577184035440-2019-12-24T10:40:35.440Z",
+                    "serverless/cicd-demo/dev/1577184673754-2019-12-24T10:51:13.754Z",
                     "cloudformation-template-Permissions-nested-stack.json"
                   ]
                 ]
@@ -314,6 +262,58 @@
             },
             "DependsOn": [
               "APINestedStack",
+              "HelloLambdaFunction"
+            ]
+          },
+          "PoliciesNestedStack": {
+            "Type": "AWS::CloudFormation::Stack",
+            "Properties": {
+              "Parameters": {
+                "ServerlessDeploymentBucketParameter": {
+                  "Ref": "ServerlessDeploymentBucket"
+                }
+              },
+              "TemplateURL": {
+                "Fn::Join": [
+                  "/",
+                  [
+                    "https://s3.ap-south-1.amazonaws.com",
+                    {
+                      "Ref": "ServerlessDeploymentBucket"
+                    },
+                    "serverless/cicd-demo/dev/1577184673754-2019-12-24T10:51:13.754Z",
+                    "cloudformation-template-Policies-nested-stack.json"
+                  ]
+                ]
+              }
+            },
+            "DependsOn": [
+              "ServerlessDeploymentBucket"
+            ]
+          },
+          "VersionsNestedStack": {
+            "Type": "AWS::CloudFormation::Stack",
+            "Properties": {
+              "Parameters": {
+                "HelloLambdaFunctionParameter": {
+                  "Ref": "HelloLambdaFunction"
+                }
+              },
+              "TemplateURL": {
+                "Fn::Join": [
+                  "/",
+                  [
+                    "https://s3.ap-south-1.amazonaws.com",
+                    {
+                      "Ref": "ServerlessDeploymentBucket"
+                    },
+                    "serverless/cicd-demo/dev/1577184673754-2019-12-24T10:51:13.754Z",
+                    "cloudformation-template-Versions-nested-stack.json"
+                  ]
+                ]
+              }
+            },
+            "DependsOn": [
               "HelloLambdaFunction"
             ]
           }
@@ -426,6 +426,20 @@
       },
       "vpc": {}
     },
+    "custom": {
+      "webpack": {
+        "packager": "npm",
+        "includeModules": {
+          "forceExclude": [
+            "aws-sdk"
+          ]
+        }
+      },
+      "splitStacks": {
+        "perFunction": false,
+        "perType": true
+      }
+    },
     "plugins": [
       "serverless-webpack",
       "serverless-plugin-split-stacks"
@@ -457,7 +471,7 @@
     "layers": {}
   },
   "package": {
-    "artifactDirectoryName": "serverless/cicd-demo/dev/1577184035440-2019-12-24T10:40:35.440Z",
+    "artifactDirectoryName": "serverless/cicd-demo/dev/1577184673754-2019-12-24T10:51:13.754Z",
     "artifact": ""
   }
 }

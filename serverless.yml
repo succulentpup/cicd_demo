@@ -12,8 +12,18 @@ plugins:
 provider:
   name: aws
   runtime: nodejs10.x
-  profile: personal-sandbox
+#  profile: personal-sandbox
   region: ap-south-1
+
+custom:
+  webpack:
+    packager: npm
+    includeModules:
+      forceExclude:
+        - aws-sdk
+  splitStacks:
+    perFunction: false
+    perType: true
 
 functions:
   hello:
