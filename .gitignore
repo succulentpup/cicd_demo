@@ -68,3 +68,6 @@ typings/
 
 # cloudformation
 cloudformation*
+
+# zip files
+cicd-demo.zip
