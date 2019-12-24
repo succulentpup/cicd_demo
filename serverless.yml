@@ -1,0 +1,24 @@
+service:
+  name: cicd-demo
+# app and org for use with dashboard.serverless.com
+#app: your-app-name
+#org: your-org-name
+
+# Add the serverless-webpack plugin
+plugins:
+  - serverless-webpack
+  - serverless-plugin-split-stacks
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  profile: personal-sandbox
+  region: ap-south-1
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          method: get
+          path: hello
