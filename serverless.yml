@@ -3,7 +3,6 @@ service:
 
 plugins:
   - serverless-webpack
-  - serverless-plugin-split-stacks
   - serverless-pseudo-parameters
   - serverless-domain-manager
 
@@ -29,9 +28,6 @@ custom:
     includeModules:
       forceExclude:
         - aws-sdk
-#  splitStacks:
-#    perFunction: false
-#    perType: true
 
 functions:
   hello:
