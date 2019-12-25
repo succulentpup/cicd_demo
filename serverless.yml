@@ -45,6 +45,6 @@ functions:
           method: get
           path: hello
 
-resources:
+#resources:
   # Output
-  - ${file(InfrastructureResources/outputs.yml)}
+#  - ${file(InfrastructureResources/outputs.yml)}
