@@ -1,5 +1,5 @@
 service:
-  name: cicd-demo
+  name: my-first-service
 # app and org for use with dashboard.serverless.com
 #app: your-app-name
 #org: your-org-name
@@ -14,8 +14,13 @@ provider:
   runtime: nodejs10.x
 #  profile: personal-sandbox
   region: ap-south-1
+  stage: ${opt:stage, 'dev'}
 
 custom:
+  host: ${self:custom.env.DOMAIN}.${self:custom.env.ROOT_DOMAIN}
+  subDomain: testapi
+  domain: ${self:custom.subDomain}.${self:custom.host}
+  env: ${file(./env/${self:provider.stage}.yaml)}
   webpack:
     packager: npm
     includeModules:
@@ -32,3 +37,7 @@ functions:
       - http:
           method: get
           path: hello
+
+resources:
+  # Output
+  - ${file(resources/outputs.yml)
