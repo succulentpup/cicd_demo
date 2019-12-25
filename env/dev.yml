@@ -3,4 +3,3 @@ DOMAIN: aspirex
 DEBUG: true
 TRACE: true
 
-DISABLE_EPSAGON: false

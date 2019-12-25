@@ -9,6 +9,7 @@ plugins:
   - serverless-webpack
   - serverless-plugin-split-stacks
   - serverless-pseudo-parameters
+  - serverless-domain-manager
 
 provider:
   name: aws
@@ -18,10 +19,15 @@ provider:
   stage: ${opt:stage, 'dev'}
 
 custom:
-  host: ${self:custom.env.DOMAIN}.${self:custom.env.ROOT_DOMAIN}
-  subDomain: testapi
-  domain: ${self:custom.subDomain}.${self:custom.host}
   env: ${file(./env/${self:provider.stage}.yml)}
+  subDomain: testapi
+  host: ${self:custom.env.DOMAIN}.${self:custom.env.ROOT_DOMAIN}
+  customDomain:
+    domainName: ${self:custom.subDomain}.${self:custom.host}
+    basePath: ''
+    stage: ${self:provider.stage}
+    createRoute53Record: true
+    endpointType: 'regional'
   webpack:
     packager: npm
     includeModules:
