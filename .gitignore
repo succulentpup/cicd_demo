@@ -69,5 +69,9 @@ typings/
 # cloudformation
 cloudformation*
 
+# serverless
+.serverless/*
+
 # zip files
 cicd-demo.zip
+.serverless/my-first-service.zip

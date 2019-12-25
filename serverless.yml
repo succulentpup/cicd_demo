@@ -8,6 +8,7 @@ service:
 plugins:
   - serverless-webpack
   - serverless-plugin-split-stacks
+  - serverless-pseudo-parameters
 
 provider:
   name: aws
@@ -40,4 +41,4 @@ functions:
 
 resources:
   # Output
-  - ${file(resources/outputs.yml)
+  - ${file(InfrastructureResources/outputs.yml)}
