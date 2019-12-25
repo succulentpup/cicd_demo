@@ -1,10 +1,6 @@
 service:
   name: my-first-service
-# app and org for use with dashboard.serverless.com
-#app: your-app-name
-#org: your-org-name
 
-# Add the serverless-webpack plugin
 plugins:
   - serverless-webpack
   - serverless-plugin-split-stacks
@@ -33,9 +29,9 @@ custom:
     includeModules:
       forceExclude:
         - aws-sdk
-  splitStacks:
-    perFunction: false
-    perType: true
+#  splitStacks:
+#    perFunction: false
+#    perType: true
 
 functions:
   hello:
@@ -45,6 +41,6 @@ functions:
           method: get
           path: hello
 
-#resources:
+resources:
   # Output
-#  - ${file(InfrastructureResources/outputs.yml)}
+  - ${file(InfrastructureResources/outputs.yml)}
